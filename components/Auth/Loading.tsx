@@ -11,5 +11,5 @@ export const Loading = () => {
         className="animate-pulse duration-700"
       />
     </div>
-  )
-}
+  );
+};
