@@ -40,7 +40,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 [Backend location](https://convex.dev)
 
 ```bash
-npm convex dev
+npx convex dev
 ```
 
 ## Authentication service
