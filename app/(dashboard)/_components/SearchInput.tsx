@@ -5,7 +5,7 @@ import qs from 'query-string'
 import { Search } from 'lucide-react'
 import { useDebounceValue } from 'usehooks-ts'
 import { useRouter } from 'next/navigation'
-import { Input } from '@/components/Ui/input'
+import { Input } from '@/components/Ui/Input'
 
 const SearchInput = () => {
   const router = useRouter()
