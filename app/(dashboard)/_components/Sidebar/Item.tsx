@@ -4,7 +4,7 @@ import React, { memo } from 'react'
 import { useOrganization, useOrganizationList } from '@clerk/nextjs'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
-import Hint from '@/components/Hint'
+import Hint from '@/components/Ui/Hint'
 
 interface ItemProps {
   id: string
