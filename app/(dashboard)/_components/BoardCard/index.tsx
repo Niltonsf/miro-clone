@@ -11,19 +11,39 @@ import { useAuth } from '@clerk/nextjs'
 import Footer from './Footer'
 import Actions from '@/components/Actions'
 import { MoreHorizontal } from 'lucide-react'
+import { useApiMutation } from '@/hooks/useApiMutation'
+import { api } from '@/convex/_generated/api'
+import { toast } from 'sonner'
 
 interface BoardCardProps {
   board: Board
-  isFavorite: boolean
 }
 
-const BoardCard = ({ board, isFavorite }: BoardCardProps) => {
+const BoardCard = ({ board }: BoardCardProps) => {
   const { userId } = useAuth()
+  const { mutate: onFavorite, pending: pendingFavorite } = useApiMutation(
+    api.board.favorite,
+  )
+  const { mutate: onUnFavorite, pending: pendingUnfavorite } = useApiMutation(
+    api.board.unFavorite,
+  )
 
   const authorLabel = userId === board.authorId ? 'You' : board.authorName
   const createdAtLabel = formatDistanceToNow(board._creationTime, {
     addSuffix: true,
   })
+
+  const handleFavorite = () => {
+    if (board.isFavorite) {
+      onUnFavorite({ id: board._id }).catch(() =>
+        toast.error('Failed to unfavorite'),
+      )
+    } else {
+      onFavorite({ id: board._id, orgId: board.orgId }).catch(() =>
+        toast.error('Failed to favorite'),
+      )
+    }
+  }
 
   return (
     <Link href={`/board/${board._id}`}>
@@ -44,12 +64,12 @@ const BoardCard = ({ board, isFavorite }: BoardCardProps) => {
         </div>
 
         <Footer
-          isFavorite={isFavorite}
+          isFavorite={board.isFavorite}
           board={board}
           authorLabel={authorLabel}
           createdAtLabel={createdAtLabel}
-          onClick={() => {}}
-          disabled={false}
+          onClick={handleFavorite}
+          disabled={pendingFavorite || pendingUnfavorite}
         />
       </div>
     </Link>

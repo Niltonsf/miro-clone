@@ -6,4 +6,5 @@ export interface Board {
   authorId: string
   imageUrl: string
   orgId: string
+  isFavorite: boolean
 }
