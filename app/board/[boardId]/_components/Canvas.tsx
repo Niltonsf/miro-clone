@@ -10,6 +10,7 @@ interface CanvasProps {
 }
 
 const Canvas = ({ boardId }: CanvasProps) => {
+  console.log('canvas: ', boardId)
   return (
     <main className="h-full w-full relative bg-neutral-100 touch-none">
       <Info />
