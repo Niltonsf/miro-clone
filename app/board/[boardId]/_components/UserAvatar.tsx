@@ -1,5 +1,5 @@
 import Hint from '@/components/Ui/Hint'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/Ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/Ui/Avatar'
 import React from 'react'
 
 interface UserAvatarProps {
