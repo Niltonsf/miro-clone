@@ -98,7 +98,7 @@ const SelectionBox = ({ onResizeHandlePointerDown }: SelectionBoxProps) => {
             }}
             onPointerDown={(e) => {
               e.stopPropagation()
-              onResizeHandlePointerDown(Side.Left, bounds)
+              onResizeHandlePointerDown(Side.Right, bounds)
             }}
           />
           <rect
