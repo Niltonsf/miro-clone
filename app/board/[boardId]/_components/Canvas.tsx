@@ -411,30 +411,34 @@ const Canvas = ({ boardId }: CanvasProps) => {
     [camera, canvasState.mode, setCanvasState, startDrawing],
   )
 
-  useEffect(() => {
-    function onKeyDown(e: KeyboardEvent) {
-      switch (e.key) {
-        // case 'Backspace': {
-        //   deleteLayers()
-        //   break
-        // }
-        case 'z': {
-          if (e.ctrlKey || e.metaKey) {
-            if (e.shiftKey) {
-              history.redo()
-            } else {
-              history.undo()
-            }
-            break
+  function onKeyDown(e: KeyboardEvent) {
+    switch (e.key) {
+      // case 'Backspace': {
+      //   deleteLayers()
+      //   break
+      // }
+      case 'z': {
+        if (e.ctrlKey || e.metaKey) {
+          if (e.shiftKey) {
+            history.redo()
+          } else {
+            history.undo()
           }
+          break
         }
       }
     }
+  }
 
-    document.addEventListener('keydown', onKeyDown)
+  useEffect(() => {
+    // Casting the listener function to handle the native KeyboardEvent
+    const handleKeyDown = (e: globalThis.KeyboardEvent) =>
+      onKeyDown(e as unknown as KeyboardEvent)
+
+    document.addEventListener('keydown', handleKeyDown)
 
     return () => {
-      document.removeEventListener('keydown', onKeyDown)
+      document.removeEventListener('keydown', handleKeyDown)
     }
   }, [deleteLayers, history])
 
