@@ -7,6 +7,8 @@ import { Rectangle } from './Rectangle'
 import Ellipse from './Ellipse'
 import Text from './Text'
 import Note from './Note'
+import Path from './Path'
+import { colorToCss } from '@/lib/utils'
 
 interface LayerPreviewProps {
   id: string
@@ -60,6 +62,18 @@ const LayerPreview = ({
           layer={layer}
           onPointerDown={onLayerPointerDown}
           selectionColor={selectionColor}
+        />
+      )
+    case LayerType.Path:
+      return (
+        <Path
+          key={id}
+          x={layer.x}
+          y={layer.y}
+          fill={layer.fill ? colorToCss(layer.fill) : '#000'}
+          points={layer.points}
+          stroke={selectionColor}
+          onPointerDown={(e) => onLayerPointerDown(e, id)}
         />
       )
     default:
