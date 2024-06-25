@@ -94,3 +94,8 @@ export function findIntersectingLayersWithRectangle(
 
   return ids
 }
+
+export function getContrastingTextColor(color: Color) {
+  const luminance = (color.r * 299 + color.g * 587 + color.b * 114) / 1000
+  return luminance >= 128 ? 'black' : 'white'
+}
