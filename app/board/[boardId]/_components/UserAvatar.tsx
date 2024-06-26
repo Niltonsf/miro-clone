@@ -9,7 +9,7 @@ interface UserAvatarProps {
   borderColor?: string
 }
 
-const UserAvatar = ({ src, name, fallback, borderColor }: UserAvatarProps) => {
+const UserAvatar = ({ name }: UserAvatarProps) => {
   return (
     <Hint label={name || 'Teammate'} side="bottom" sideOffset={18}>
       <div></div>
